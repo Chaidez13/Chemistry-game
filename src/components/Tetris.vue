@@ -10,7 +10,7 @@
 
 <script>
 import SelectLevel from "../components/SelectLevel";
-
+// TODO: Insertar Juego de Tetris aqui
 import { mapState } from "vuex";
 export default {
   components: {
