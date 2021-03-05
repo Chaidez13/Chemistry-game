@@ -1,27 +1,69 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+// import store from "../store";
+
+import Games from "../views/Games.vue";
+import UserLogout from "../views/UserLogout.vue";
+import Usuario from "../views/Usuario.vue";
+import Options from "../views/Options.vue";
+import Game from "../views/Game.vue";
+import Dashboard from "../views/Dashboard.vue";
+import Ranking from "../views/Ranking.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "home",
+    component: Games,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: About,
+    path: "/logout",
+    name: "logout",
+    component: UserLogout,
+  },
+  {
+    path: "/games",
+    name: "games",
+    component: Games,
+  },
+  {
+    path: "/usuario",
+    name: "usuario",
+    component: Usuario,
+  },
+  {
+    path: "/options",
+    name: "options",
+    component: Options,
+  },
+  {
+    path: "/game/:id",
+    name: "game",
+    component: Game,
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: Dashboard,
+  },
+  {
+    path: "/ranking",
+    name: "ranking",
+    component: Ranking,
   },
 ];
 
 const router = new VueRouter({
   routes,
 });
+
+/* router.beforeEach((to, from, next) => {
+  //necessary logic to resolve the hook
+  if (to.name !== "home" && to.name !== "usuario" && !store.getters.auth.status)
+    next({ name: "usuario" });
+  else next();
+}); */
 
 export default router;

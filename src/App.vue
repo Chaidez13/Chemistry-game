@@ -1,32 +1,98 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-main>
+      <v-row align="center" justify="center">
+        <router-view />
+      </v-row>
+    </v-main>
+
+    <v-navigation-drawer app>
+      <v-list-item class="px-2" @click="userValidation">
+        <v-list-item-content>
+          <v-list-item-title v-if="sesion.status">{{
+            sesion.name
+          }}</v-list-item-title>
+          <v-list-item-title v-if="!sesion.status"
+            >Iniciar Sesión</v-list-item-title
+          >
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in opciones"
+          :key="i"
+          link
+          @click="changeOption(item.ruta)"
+          v-show="item.show == sesion.status"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.opcion }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapState, mapActions } from "vuex";
 
-#nav {
-  padding: 30px;
+export default {
+  name: "App",
+  data: () => ({
+    //
+    drawer: null,
+    opciones: [
+      { opcion: "Juegos", icon: "mdi-gamepad-variant", ruta: "/", show: false },
+      { opcion: "Opciones", icon: "mdi-cogs", ruta: "/options", show: false },
+      {
+        opcion: "Estadísticas",
+        icon: "mdi-google-analytics",
+        ruta: "/dashboard",
+        show: false,
+      },
+      {
+        opcion: "Ranking",
+        icon: "mdi-format-list-numbered",
+        ruta: "/ranking",
+        show: false,
+      },
+      {
+        opcion: "Cerrar sesión",
+        icon: "mdi-logout",
+        ruta: "/logout",
+        show: true,
+      },
+    ],
+    // :/
+  }),
+  computed: {
+    ...mapState(["sesion"]),
+  },
+  methods: {
+    ...mapActions(["validarSesion"]),
+    userValidation() {
+      if (!this.sesion.status) this.$router.push({ name: "usuario" });
+    },
+    changeOption(ruta) {
+      const actual = this.$route.path;
+      if (ruta != actual) this.$router.push({ path: ruta });
+    },
+  },
+  created() {
+    this.validarSesion();
+  },
+};
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+//https://github.com/neelpatel05/periodic-table-api
+</script>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style scoped>
 </style>
