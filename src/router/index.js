@@ -9,6 +9,7 @@ import Options from "../views/Options.vue";
 import Game from "../views/Game.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Ranking from "../views/Ranking.vue";
+import Encyclopedia from '../views/Encyclopedia'
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
     path: "/ranking",
     name: "ranking",
     component: Ranking,
+  },
+  {
+    path: "/encyclopedia",
+    name: "enciclopedia",
+    component: Encyclopedia,
   },
 ];
 

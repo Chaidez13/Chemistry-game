@@ -51,7 +51,12 @@ export default {
     drawer: null,
     opciones: [
       { opcion: "Juegos", icon: "mdi-gamepad-variant", ruta: "/", show: false },
-      { opcion: "Opciones", icon: "mdi-cogs", ruta: "/options", show: false },
+      {
+        opcion: "Enciclopedia",
+        icon: "mdi-book-open-variant",
+        ruta: "/encyclopedia",
+        show: false,
+      },
       {
         opcion: "Estadísticas",
         icon: "mdi-google-analytics",
@@ -64,6 +69,7 @@ export default {
         ruta: "/ranking",
         show: false,
       },
+      { opcion: "Opciones", icon: "mdi-cogs", ruta: "/options", show: false },
       {
         opcion: "Cerrar sesión",
         icon: "mdi-logout",
@@ -94,5 +100,4 @@ export default {
 //https://github.com/neelpatel05/periodic-table-api
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

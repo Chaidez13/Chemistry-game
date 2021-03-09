@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import MemoriaGame from "../components/MemoriaGame";
 import SelectLevel from "../components/SelectLevel";
 export default {
